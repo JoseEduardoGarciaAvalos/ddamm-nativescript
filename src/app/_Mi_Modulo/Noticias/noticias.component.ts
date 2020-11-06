@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
 import { NoticiasService } from '../noticias.service';
+import * as platform from "tns-core-modules/platform";
 
 @Component({
   selector: 'noticias',
@@ -18,6 +19,12 @@ export class NoticiasComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (platform.isIOS) {
+      this.noticiasS.agregar("Noticia exclusiva para IOS");
+    } 
+    if (platform.isAndroid) {
+      this.noticiasS.agregar("Noticia exclusiva para Android");
+    }     
   }
 
   onDrawerButtonTap(): void {
