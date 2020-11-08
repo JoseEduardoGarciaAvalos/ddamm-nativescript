@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import * as app from "tns-core-modules/application";
 import { DetalleService } from '../detalle.service';
+import * as Toast from 'nativescript-toast';
 
 @Component({
     selector: 'ns-detalle',
@@ -17,6 +18,9 @@ export class DetalleComponent implements OnInit {
     ngOnInit() {
         this.route.queryParams.subscribe( params =>{
             this.cuerpo = params["valor"]
+            const toast = Toast.makeText("Esta viendo la noticia: " + this.cuerpo);
+            toast.setDuration(3000);
+            toast.show();
         })
         this.agregarElementos();
     }
