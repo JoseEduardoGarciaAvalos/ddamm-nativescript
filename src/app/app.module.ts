@@ -4,6 +4,7 @@ import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angul
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { NoticiasService } from "./_Mi_Modulo/noticias.service";
 
 @NgModule({
     bootstrap: [
@@ -19,6 +20,7 @@ import { AppComponent } from "./app.component";
     ],
     schemas: [
         NO_ERRORS_SCHEMA
-    ]
+    ],
+    providers: [NoticiasService],
 })
 export class AppModule { }

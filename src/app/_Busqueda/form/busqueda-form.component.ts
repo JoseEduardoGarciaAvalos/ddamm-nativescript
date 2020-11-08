@@ -1,17 +1,17 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
-  selector: 'ns-search-form',
-  templateUrl: './search-form.component.html'
+  selector: 'busqueda-form',
+  templateUrl: './busqueda-form.component.html'
 })
-export class SearchFormComponent implements OnInit{
+export class BusquedaFormComponent implements OnInit{
   textFliedValue: string ="";
-  @Output() search: EventEmitter<string> = new EventEmitter();
+  @Output() busqueda: EventEmitter<string> = new EventEmitter();
   @Input() inicial : string;
   onButtonTap(): void{
     console.dir(this.textFliedValue);
     //if(this.textFliedValue.length>2){
-      this.search.emit(this.textFliedValue);
+      this.busqueda.emit(this.textFliedValue);
     //}
   }
 
