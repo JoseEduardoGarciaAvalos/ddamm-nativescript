@@ -6,6 +6,8 @@ import { BusquedaListComponent } from "./busqueda-list.component";
 import { DetalleComponent } from "./detalle/detalle.component";
 import { NativeScriptFormsModule } from "nativescript-angular";
 import { BusquedaFormComponent } from "./form/busqueda-form.component";
+import { MinLenDirective } from "./minLen.directive";
+
 
 @NgModule({
     imports: [
@@ -16,7 +18,8 @@ import { BusquedaFormComponent } from "./form/busqueda-form.component";
     declarations: [
         BusquedaListComponent,
         DetalleComponent,
-        BusquedaFormComponent
+        BusquedaFormComponent,
+        MinLenDirective
     ],
     schemas: [
         NO_ERRORS_SCHEMA
