@@ -3,6 +3,7 @@ import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
 import { NoticiasService } from "../_Mi_Modulo/noticias.service";
 import * as platform from "tns-core-modules/platform";
+import { RouterExtensions } from "nativescript-angular/router";
 
 @Component({
     selector: "busqueda-lista",
@@ -11,7 +12,7 @@ import * as platform from "tns-core-modules/platform";
 })
 export class BusquedaListComponent implements OnInit {
 
-    constructor(public noticiasS: NoticiasService) {
+    constructor(public noticiasS: NoticiasService, private routerExt: RouterExtensions) {
         // Use the component constructor to inject providers.
     }
 
@@ -35,5 +36,18 @@ export class BusquedaListComponent implements OnInit {
     }
     onItemTap(x):void{
         console.dir(x);
+        console.log("TEXTO ",this.noticiasS.buscar()[x.index])
+    }
+
+    navegarDetalleTap(ruta: string, evento): void {
+        this.onItemTap(evento)
+        this.routerExt.navigate([ruta], {
+            transition: {
+                name: "fade"
+            }, 
+            queryParams: { 'valor': this.noticiasS.buscar()[evento.index], }
+        });
+
+        (<RadSideDrawer>app.getRootView()).closeDrawer();
     }
 }

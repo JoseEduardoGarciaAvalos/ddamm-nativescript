@@ -3,6 +3,7 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 
 import { BusquedaRoutingModule } from "./busqueda-routing.module";
 import { BusquedaListComponent } from "./busqueda-list.component";
+import { DetalleComponent } from "./detalle/detalle.component";
 
 @NgModule({
     imports: [
@@ -10,7 +11,8 @@ import { BusquedaListComponent } from "./busqueda-list.component";
         BusquedaRoutingModule
     ],
     declarations: [
-        BusquedaListComponent
+        BusquedaListComponent,
+        DetalleComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
