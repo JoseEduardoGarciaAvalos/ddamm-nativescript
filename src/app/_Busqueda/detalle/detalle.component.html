@@ -14,15 +14,15 @@
     </ActionItem>
     <Label [text]="'Detalle: ' + cuerpo"></Label>
 </ActionBar>
+<PullToRefresh (refresh)="refrescar($event)">
+    <ListView class="list-group" [items]="this.detalleS.buscar()" style="height:1250px ;">
+        <ng-template let-x="item">
+            <FlexboxLayout flexDirection="row" class="list-group-item">
+                <Image src="res://icon" class="thumb img-circle"></Image>
+                <Label [text]="x" class="list-group-item-heading" verticalAlignment="center" style="width: 60%"></Label>
+            </FlexboxLayout>
+        </ng-template>
 
-<ListView class="list-group" [items]="this.detalleS.buscar()" style="height:1250px ;">
-    <ng-template let-x="item">
-        <FlexboxLayout flexDirection="row" class="list-group-item">
-            <Image src="res://icon" class="thumb img-circle"></Image>
-            <Label [text]="x" class="list-group-item-heading" verticalAlignment="center" style="width: 60%"></Label>
-        </FlexboxLayout>
-    </ng-template>
-
-</ListView>
-
+    </ListView>
+</PullToRefresh>
 <!-- <Label [text]="cuerpo" class="list-group-item-heading" verticalAlignment="center" style="width: 60%"></Label> -->
