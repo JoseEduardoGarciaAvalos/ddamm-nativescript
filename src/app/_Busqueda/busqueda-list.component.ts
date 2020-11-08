@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef  } from "@angular/core";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
 import { NoticiasService } from "../_Mi_Modulo/noticias.service";
 import * as platform from "tns-core-modules/platform";
 import { RouterExtensions } from "nativescript-angular/router";
 import * as dialogo from "tns-core-modules/ui/dialogs";
+import { View, Color } from "tns-core-modules/ui/page/page";
 
 @Component({
     selector: "busqueda-lista",
@@ -13,6 +14,7 @@ import * as dialogo from "tns-core-modules/ui/dialogs";
 })
 export class BusquedaListComponent implements OnInit {
     public resultados : Array<string>;
+    @ViewChild("labelHTML",null) layout_typescript:ElementRef; 
 
     constructor(public noticiasS: NoticiasService, private routerExt: RouterExtensions) {
         // Use the component constructor to inject providers.
@@ -75,5 +77,20 @@ export class BusquedaListComponent implements OnInit {
 
     buscar(valorFiltro:string){
         this.resultados = this.noticiasS.buscar().filter((x)=> x.indexOf(valorFiltro)>= 0);
+
+        //ejecutar animacion luego del buscar
+        const vista = <View>this.layout_typescript.nativeElement;
+        vista.backgroundColor = new Color("White");
+        vista.animate({
+            backgroundColor: new Color("Green"),
+            duration: 3000,
+            delay: 150,
+        });
+    }
+
+    onReset(evento){
+        const vista = <View>this.layout_typescript.nativeElement;
+        vista.backgroundColor = new Color("White");
+        console.log("Se ha realizado un Gesto: longPress")
     }
 }

@@ -15,8 +15,8 @@
     <Label text="Búsqueda"></Label>
 </ActionBar>
 
-<StackLayout class="page__content">
-    <Label class="page__content-icon fas" text="&#xf002;"></Label>
+<StackLayout class="page__content" >
+    <Label class="page__content-icon fas" text="&#xf002;" #labelHTML (longPress)="onReset($event)"></Label>
     <busqueda-form (onBuscar)="buscar($event)" [criterio]="'Noticia'"></busqueda-form>
     <Label text="Toca alguna noticia para ir a otra sección con más detalle" verticalAlignment="center"></Label>
     <ListView class="list-group" [items]="this.resultados" (itemTap)="navegarDetalleTap('/busqueda/detalle',$event)" style="height:1250px;">
