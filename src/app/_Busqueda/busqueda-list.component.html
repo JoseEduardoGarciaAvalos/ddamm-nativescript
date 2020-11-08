@@ -17,9 +17,9 @@
 
 <StackLayout class="page__content">
     <Label class="page__content-icon fas" text="&#xf002;"></Label>
+    <busqueda-form (onBuscar)="buscar($event)" [criterio]="'Noticia'"></busqueda-form>
     <Label text="Toca alguna noticia para ir a otra sección con más detalle" verticalAlignment="center"></Label>
-
-    <ListView class="list-group" [items]="this.noticiasS.buscar()" (itemTap)="navegarDetalleTap('/busqueda/detalle',$event)" style="height:1250px;">
+    <ListView class="list-group" [items]="this.resultados" (itemTap)="navegarDetalleTap('/busqueda/detalle',$event)" style="height:1250px;">
         <ng-template let-x="item">
             <FlexboxLayout flexDirection="row" class="list-group-item" >
                 <Image src="res://icon" class="thumb img-circle"></Image>

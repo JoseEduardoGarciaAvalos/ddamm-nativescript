@@ -12,6 +12,7 @@ import * as dialogo from "tns-core-modules/ui/dialogs";
     templateUrl: "./busqueda-list.component.html"
 })
 export class BusquedaListComponent implements OnInit {
+    public resultados : Array<string>;
 
     constructor(public noticiasS: NoticiasService, private routerExt: RouterExtensions) {
         // Use the component constructor to inject providers.
@@ -22,14 +23,14 @@ export class BusquedaListComponent implements OnInit {
         this.noticiasS.agregar("Noticia 1")
         this.noticiasS.agregar("Noticia 2")
         this.noticiasS.agregar("Noticia 3")
-        this.noticiasS.agregar("Noticia 4")
+        this.noticiasS.agregar("Articulo 1")
         if (platform.isIOS) {
             this.noticiasS.agregar("Noticia exclusiva para IOS");
         }
         if (platform.isAndroid) {
             this.noticiasS.agregar("Noticia exclusiva para Android");
         }
-
+        this.buscar("Noticia")
     }
 
     onDrawerButtonTap(): void {
@@ -38,7 +39,7 @@ export class BusquedaListComponent implements OnInit {
     }
     onItemTap(x): void {
         console.dir(x);
-        console.log("TEXTO ", this.noticiasS.buscar()[x.index])
+        console.log("TEXTO ", this.resultados[x.index])
     }
 
     navegarDetalleTap(ruta: string, evento): void {
@@ -47,7 +48,7 @@ export class BusquedaListComponent implements OnInit {
             transition: {
                 name: "fade"
             },
-            queryParams: { 'valor': this.noticiasS.buscar()[evento.index], }
+            queryParams: { 'valor': this.resultados[evento.index], }
         });
 
         (<RadSideDrawer>app.getRootView()).closeDrawer();
@@ -63,10 +64,16 @@ export class BusquedaListComponent implements OnInit {
                     dialogo.alert({ title: "Información", message: "Se encontro 1 noticia nueva", okButtonText: "OK" }).then(() => {
                         console.log("Cerrado 1");
                         this.noticiasS.agregar("Noticia NUEVA")
+                        this.resultados.push("Noticia NUEVA")
                     }));
             } else if (result === "Populares") {
                 this.noticiasS.agregar("Noticia POPULAR")
+                this.resultados.push("Noticia POPULAR")
             }
         });
+    }
+
+    buscar(valorFiltro:string){
+        this.resultados = this.noticiasS.buscar().filter((x)=> x.indexOf(valorFiltro)>= 0);
     }
 }
