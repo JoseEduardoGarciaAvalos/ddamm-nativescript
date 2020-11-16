@@ -6,7 +6,7 @@ import * as platform from "tns-core-modules/platform";
 import { RouterExtensions } from "nativescript-angular/router";
 import * as dialogo from "tns-core-modules/ui/dialogs";
 import { View, Color } from "tns-core-modules/ui/page/page";
-
+import * as Toast from 'nativescript-toast';
 @Component({
     selector: "busqueda-lista",
     moduleId: module.id,
@@ -21,18 +21,13 @@ export class BusquedaListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.noticiasS.buscar().splice(0, this.noticiasS.buscar().length)
-        this.noticiasS.agregar("Noticia 1")
-        this.noticiasS.agregar("Noticia 2")
-        this.noticiasS.agregar("Noticia 3")
-        this.noticiasS.agregar("Articulo 1")
-        if (platform.isIOS) {
-            this.noticiasS.agregar("Noticia exclusiva para IOS");
-        }
-        if (platform.isAndroid) {
-            this.noticiasS.agregar("Noticia exclusiva para Android");
-        }
-        this.buscar("Noticia")
+        this.buscarAhora("");
+        // if (platform.isIOS) {
+        //     this.resultados.push("Noticia exclusiva para IOS");
+        // }
+        // if (platform.isAndroid) {
+        //     this.resultados.push("Noticia exclusiva para Android");
+        // }
     }
 
     onDrawerButtonTap(): void {
@@ -65,19 +60,18 @@ export class BusquedaListComponent implements OnInit {
                 this.temporizador(() =>
                     dialogo.alert({ title: "Información", message: "Se encontro 1 noticia nueva", okButtonText: "OK" }).then(() => {
                         console.log("Cerrado 1");
-                        this.noticiasS.agregar("Noticia NUEVA")
+                        //this.noticiasS.agregar("Noticia NUEVA")
                         this.resultados.push("Noticia NUEVA")
                     }));
             } else if (result === "Populares") {
-                this.noticiasS.agregar("Noticia POPULAR")
+                //this.noticiasS.agregar("Noticia POPULAR")
                 this.resultados.push("Noticia POPULAR")
             }
         });
     }
 
     buscar(valorFiltro:string){
-        this.resultados = this.noticiasS.buscar().filter((x)=> x.indexOf(valorFiltro)>= 0);
-
+        this.buscarAhora(valorFiltro);
         //ejecutar animacion luego del buscar
         const vista = <View>this.layout_typescript.nativeElement;
         vista.backgroundColor = new Color("White");
@@ -85,6 +79,18 @@ export class BusquedaListComponent implements OnInit {
             backgroundColor: new Color("Green"),
             duration: 3000,
             delay: 150,
+        });
+    }
+
+    buscarAhora(s:string){
+        console.dir("buscar: "+s);
+        this.noticiasS.buscar(s).then((r:any) => {
+            console.log("resultados buscar "+ JSON.stringify(r));
+            this.resultados = r;
+        }, (e)=> {
+            console.log("Error buscar "+e);
+            const toast = Toast.makeText("Error en la busqueda","3000")
+            toast.show()
         });
     }
 
