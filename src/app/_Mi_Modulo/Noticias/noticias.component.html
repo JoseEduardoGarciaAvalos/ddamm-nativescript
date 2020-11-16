@@ -19,12 +19,13 @@
 </ActionBar>
 
 
-
-<StackLayout class="page__content">
-    <Label class="page__content-icon fas" text="&#xf002;"></Label>
-    <Label class="page__content-placeholder miclase" *ngFor="let valor of this.noticiasS.buscar()" [text]="valor"></Label>
-</StackLayout>
-
-<StackLayout class="page__content">
-    <Button text="Noticias works!" class="btn btn-primary"></Button>
+<StackLayout class="page__content" >
+    <ListView class="list-group" [items]="this.resultados" (itemTap)="onItemTap($event)" style="height:1250px;">
+        <ng-template let-x="item">
+            <FlexboxLayout flexDirection="row" class="list-group-item" >
+                <Label [text]="x" class="list-group-item-heading" verticalAlignment="center" style="width: 60%"></Label>
+                <Label [aux]="x" class="page__content-icon fas" text="&#xf005;" (tap)="onTap($event)" (longPress)="onLongPress($event)"></Label>
+            </FlexboxLayout>
+        </ng-template>
+    </ListView>
 </StackLayout>
