@@ -15,7 +15,12 @@
     <Label text="Settings"></Label>
 </ActionBar>
 
-<GridLayout class="page__content">
+<StackLayout class="page page-content">
     <Label class="page__content-icon fas" text="&#xf013;"></Label>
-    <Label class="page__content-placeholder" text="<!-- Page content goes here -->"></Label>
-</GridLayout>
+    <Label [text]="this.mensaje"></Label>
+    <StackLayout>
+        <Label text="Nombre de Usuario"></Label>
+        <TextField [(ngModel)]="this.usuario" hint="Ingresar usuario..."></TextField>
+        <Button text="Guardar" (tap)="guardar()"></Button>
+    </StackLayout>
+</StackLayout>
