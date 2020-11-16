@@ -12,10 +12,11 @@
     <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
         ios.position="left">
     </ActionItem>
-    <Label text="Featured"></Label>
+    <Label text="Favoritos"></Label>
 </ActionBar>
 
-<GridLayout class="page__content">
-    <Label class="page__content-icon fas" text="&#xf005;"></Label>
-    <Label class="page__content-placeholder" text="<!-- Page content goes here -->"></Label>
-</GridLayout>
+<StackLayout class="page__content">
+    <Label class="page__content-icon fas" text="&#xf005;" *ngIf="this.favoritos.length==0"></Label>
+    <Button text="Leer ahora" class="btn btn-primary" (tap)="leerAhora()"></Button>
+    <Label class="page__content-placeholder" *ngFor="let favorito of this.favoritos; index as i" [text]="(i+1) + '. ' + favorito.titulo"></Label>
+</StackLayout>
