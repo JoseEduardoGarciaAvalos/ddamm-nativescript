@@ -15,7 +15,8 @@
     <Label text="Home"></Label>
 </ActionBar>
 
-<GridLayout class="page__content">
+<StackLayout class="page__content">
     <Label class="page__content-icon fas" text="&#xf015;"></Label>
-    <Label class="page__content-placeholder" text="<!-- Page contents goes here -->"></Label>
-</GridLayout>
+    <Label class="page__content-placeholder" text="Lista de favoritos: " horizontalAlignment="left" *ngIf="this.favoritos.length>0"></Label>
+    <Label class="page__content-placeholder" *ngFor="let favorito of this.favoritos; index as i" [text]="(i+1) + '. ' + favorito.titulo"></Label>
+</StackLayout>
