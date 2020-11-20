@@ -7,7 +7,7 @@ Injectable({
 })
 export class NoticiasService{
     //private noticias: Array<string> = [];
-    api: string = "https://aee75b773a19.ngrok.io";
+    api: string = "https://3e721fc19f13.ngrok.io";
 
     constructor() {
         this.getDb((db) => {
@@ -52,10 +52,11 @@ export class NoticiasService{
     }
     
     buscar(s: string){
-        this.getDb((db) => {
-            db.execSQL("insert into logs (texto) values (?)", [s],
-                (err, id) => console.log("nuevo id", id));
-        }, () => console.log("error on getDB"));
+       if(s)
+            this.getDb((db) => {
+                db.execSQL("insert into logs (texto) values (?)", [s],
+                    (err, id) => console.log("nuevo id", id));
+            }, () => console.log("error on getDB"));
         
         return getJSON(this.api + "/get?q="+s);
     }

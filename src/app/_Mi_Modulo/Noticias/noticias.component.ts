@@ -7,6 +7,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from '~/app/app.module';
 import * as Toast from 'nativescript-toasts';
 import { Noticia, NuevaNoticiaAction, FavoritoAction } from '../noticias-state.models';
+import * as SocialShare from "nativescript-social-share";
+
 @Component({
   selector: 'noticias',
   templateUrl: './noticias.component.html'
@@ -51,6 +53,7 @@ export class NoticiasComponent implements OnInit {
   onLongPress(x): void {
     console.log("EVENTO onLongPress: ", x.object.get("aux"))
     this.store.dispatch(new NuevaNoticiaAction(new Noticia(x.view.bindingContext)));
+    SocialShare.shareText(x.view.bindingContext, "Asunto: Compartido desde el curso!");
   }
 
   onDrawerButtonTap(): void {
