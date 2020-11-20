@@ -6,7 +6,6 @@ node_modules
 
 # NativeScript Template
 *.js.map
-*.js
 !webpack.config.js
 *.css
 
