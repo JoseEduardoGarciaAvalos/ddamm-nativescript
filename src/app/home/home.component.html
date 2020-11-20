@@ -17,6 +17,7 @@
 
 <StackLayout class="page__content">
     <Label class="page__content-icon fas" text="&#xf015;"></Label>
+    <Button text="Foto!" (tap)="onButtonTap()"></Button>
     <Label class="page__content-placeholder" text="Lista de favoritos: " horizontalAlignment="left" *ngIf="this.favoritos.length>0"></Label>
     <Label class="page__content-placeholder" *ngFor="let favorito of this.favoritos; index as i" [text]="(i+1) + '. ' + favorito.titulo"></Label>
 </StackLayout>

@@ -28,18 +28,23 @@ export class AppComponent implements OnInit {
         this.router.events
         .pipe(filter((event: any) => event instanceof NavigationEnd))
         .subscribe((event: NavigationEnd) => this._activatedUrl = event.urlAfterRedirects);
-        firebase.init({
-            onMessageReceivedCallback: (message: Message) => {
-                console.log(`Titulo: ${message.title}`);
-                console.log(`Cuerpo: ${message.body}`);
-                console.log(`Data: ${JSON.stringify(message.data)}`);
-                const toast = Toast.makeText("Notificacion: " + message.title);
-                toast.setDuration(100);
-                toast.show();
-            },
-            onPushTokenReceivedCallback: (token) => console.log("Firebase Push Token: " + token)
-        }).then(() => console.log("firebase.init done"),
-                (error) => console.log("firebase.init error: " + error));
+        try{
+            firebase.init({
+                onMessageReceivedCallback: (message: Message) => {
+                    console.log(`Titulo: ${message.title}`);
+                    console.log(`Cuerpo: ${message.body}`);
+                    console.log(`Data: ${JSON.stringify(message.data)}`);
+                    const toast = Toast.makeText("Notificacion: " + message.title);
+                    toast.setDuration(100);
+                    toast.show();
+                },
+                onPushTokenReceivedCallback: (token) => console.log("Firebase Push Token: " + token)
+            }).then(() => console.log("firebase.init done"),
+                    (error) => console.log("firebase.init error: " + error));
+        }catch (e){
+            ;
+        }
+
     }
 
     get sideDrawerTransition(): DrawerTransitionBase {
