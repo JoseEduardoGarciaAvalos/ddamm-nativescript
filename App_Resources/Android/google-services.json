@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "980779033412",
+    "firebase_url": "https://coursea-nativescript.firebaseio.com",
+    "project_id": "coursea-nativescript",
+    "storage_bucket": "coursea-nativescript.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980779033412:android:0e8845d9f6a052cff32d11",
+        "android_client_info": {
+          "package_name": "org.nativescript.mydrawerng"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980779033412-tbm3kkk9u20b6ifh4nqufn750hcocfls.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuYLp8tsch-8gVQDFM41ntGIn9O1ZmPz0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980779033412-tbm3kkk9u20b6ifh4nqufn750hcocfls.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
